@@ -5,7 +5,7 @@
   "main": "index.js",
   "types": "types/index.d.ts",
   "dependencies": {
-    "vituum": "^1.1",
+    "vituum": "https://github.com/Yuzy/vituum.git#enable-config-base",
     "nunjucks": "^3.2",
     "lodash": "^4.17"
   },
