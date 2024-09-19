@@ -35,10 +35,11 @@ const defaultOptions = {
 const renderTemplate = async ({ filename, server, resolvedConfig }, content, options) => {
     const initialFilename = filename.replace('.html', '')
     const output = {}
+    const root = options.root ? resolve(resolvedConfig.root, options.root) : resolvedConfig.root;
     const context = options.data
         ? processData({
             paths: options.data,
-            root: resolvedConfig.root
+            root: root
         }, options.globals)
         : options.globals
 
@@ -68,7 +69,7 @@ const renderTemplate = async ({ filename, server, resolvedConfig }, content, opt
         lodash.merge(context, JSON.parse(fs.readFileSync(`${initialFilename}.json`).toString()))
     }
 
-    const nunjucksEnvironment = nunjucks.configure(options.root, Object.assign({
+    const nunjucksEnvironment = nunjucks.configure(root, Object.assign({
         noCache: true
     }, options.options))
 
